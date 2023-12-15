@@ -1,0 +1,15 @@
+{%block content%}
+   <div>
+        <h1>{{object.title}}</h1>
+        <hr>
+        <p>Written by:{{object.auth.username}} at {{object.date}}</p>
+        <br>
+        <p>{{object.content|safe}}</p>
+   </div>
+<div>
+    <a href="{% url 'edit_article' object.pk%}"><button>Edit This</button></a>
+    <a href="{% url 'addnew_article' object.pk%}"><button>Add Article</button></a>
+    <a href="{% url 'delete_article' object.pk%}"><button>Delete Article</button></a>
+   <a href="{% url 'index'%}"><button>Back</button></a>
+</div>
+{%endblock%}

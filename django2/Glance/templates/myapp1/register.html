@@ -1,0 +1,16 @@
+
+<h3>Sign Up by filling the form below:</h3>
+
+{%for message in messages%}
+<h5 style="color:#ff0000">{{message}}</h5>
+{%endfor%}
+<form action="register" method="post">
+    {%csrf_token%}
+    <div>Username:<input type="text" name="username" placeholder="Enter yourname"></div>
+    <div>Email:<input type="email" name="email" id="" placeholder="Your email"></div>
+    <div>Password:<input type="password" name="password1" id=""></div>
+    <div>Repeat Password:<input type="password" name="password2" id=""></div>
+    <br>
+    <input type="submit" value="Submit">
+
+</form>

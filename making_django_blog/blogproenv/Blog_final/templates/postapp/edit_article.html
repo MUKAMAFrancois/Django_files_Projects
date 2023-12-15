@@ -1,0 +1,9 @@
+{%block content%}
+<h1>Edit to update it</h1>
+<a href="{% url 'index'%}"><button>Cancel</button></a>
+<form action="" method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button type="submit">Update</button>
+</form>
+{%endblock%}

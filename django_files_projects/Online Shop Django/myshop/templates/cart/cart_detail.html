@@ -1,0 +1,78 @@
+{%extends 'common/base.html'%}
+{%block carousel %}{%endblock%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}Shopping Cart{%endblock%}</title>
+   
+</head>
+
+<style>
+    body{
+        min-height: 100vh;
+        background-color: #f0f8ff;
+        background-image: linear-gradient(steelblue,#fff);
+    }
+   
+</style>
+<body>
+    {% block content%}
+    <div class="container">
+        <h1>Your Shopping Cart</h1>
+
+        <table class="cart">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Remove</th>
+                    <th>Unit price</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+              {%for item in cart%}
+              {%with product=item.product%}
+
+                <tr>
+                    <td><a href="{{product.product_image.url}}"></a></td>
+                    <td>{{product.product_name}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>
+                        <form action="{% url 'cart_remove' product.id %}" method="post">
+                            {%csrf_token%}
+                            <input type="submit" value="Remove">
+                        </form>
+                    </td>
+                    <td>${{item.price}}</td>
+                    <td>${{item.total_price}}</td>
+
+                </tr>
+              {%endwith%}
+              {%endfor%}
+
+              <tr class="total">
+                <td>Total</td>
+                <td colspan="4"></td>
+                <td>{{cart.get_total_price}}</td>
+
+              </tr>  
+            </tbody>
+        </table>
+
+        <p>
+            <a href="{% url 'home_index' %}" class="btn">Continue Shopping</a>
+            <a href="" class="btn">Checkout</a>
+        </p>
+    </div>
+
+
+    {%endblock%}
+
+    
+</body>
+</html>

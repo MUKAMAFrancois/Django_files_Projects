@@ -1,0 +1,37 @@
+{% load static%}
+{% load blog_tags%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base.css'%}">
+    <title>My Blog</title>
+</head>
+<body>
+   
+    {% block content%}
+    <nav></nav>
+    <main></main>
+    {% endblock%}
+
+    <div class="sidebar">
+        <div class="latest-posts">
+             <h2>Latest Posts</h2>
+             {%  show_latest_posts 3%}
+         </div>
+         <div class="most-commented">
+             <h3>Most commented posts</h3>
+                 {% most_commented_posts as most_commented_posts %}
+         
+                 <ul>
+                     {% for post in most_commented_posts %}
+                     <li><a href="{% url 'detail' post.slug%}">{{post.title}}</a></li>
+                     {% endfor %}
+                 </ul>
+         </div>
+     </div>
+    
+</body>
+</html>

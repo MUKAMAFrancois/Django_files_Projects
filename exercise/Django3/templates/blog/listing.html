@@ -1,0 +1,42 @@
+{%extends 'blog/base.html'%}
+    
+    {% block content%}
+   
+<h1>Listing All!</h1>
+<div>
+    <a href="{% url 'tech'%}"><button>Tech</button></a>
+
+
+<main>
+    <div>
+        {%for item in object_list%}
+        <p> <a href="{% url 'detail' item.slug%}"><h1>{{item.title}}</h1></a></p>
+        <p>Created at {{item.created}} by <u style="color:#898080">{{item.author}}</u></p>
+        <p>{{item.body|truncatewords:20}} <a href="{% url 'detail' item.slug%}" style="color:#820a0a">Read more.</a></p>
+     {%endfor%}
+    </div>
+
+</main>
+  
+
+<nav>
+    <ul class="pagination">
+        <div>
+            {% if page_obj.has_previous %}
+            
+                    <a href="?page={{ page_obj.previous_page_number }}"><button>Previous</button></a>
+                
+            {% endif %}
+
+                <a href="#"><button>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</button></a>
+         
+
+            {% if page_obj.has_next %}
+                <a  href="?page={{ page_obj.next_page_number }}"><button>Next</button></a>
+
+            {% endif %}
+        </div>
+    </ul>
+</nav>
+{%endblock%}
+

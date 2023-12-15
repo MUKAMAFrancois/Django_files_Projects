@@ -1,0 +1,30 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List-Django</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+</head>
+{%block content%}
+<body style="background-color: #c9c6c6;">
+    <div class="conntainer m-5">
+        <div class="row">
+         <div class="col-6">
+          <h2>Task:{{object.title}}</h2>
+          <hr>
+          <h3>Category: {{object.category}}</h3>
+          <p>{{object.description|safe}}</p>
+          <h4 class="text-danger">Due: {{object.due_date}}</h4>
+          <a href="{% url 'homepage'%}" class="btn btn-outline-success my-5"><span class="fw-bold">Back</span></a>
+         </div>
+        </div>
+     </div>  
+    <script src="{% static 'js/bootstrap.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+</body>
+{%endblock%}
+</html>

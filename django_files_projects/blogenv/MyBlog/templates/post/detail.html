@@ -1,0 +1,51 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
+ {{ post.body|linebreaks }}
+
+ <p><a href="{% url 'blogapp1:post_share' post.id%}"><h4>Share This Post</h4></a></p>
+ <hr>
+ <!--    SIMILAR POSTS -->
+ <h2>Simlilar posts</h2>
+ {% for post in similar_posts %}
+     <p><a href="{{post.get_absolute_url}}">{{post.title}}</a></p>
+ {% empty%}
+ There are no Similar posts yet!
+ {% endfor%}
+
+ <!--Commenting-->
+ <br>
+ <hr>
+<section class="commenting">
+        {% with comments.count as total_comments%}
+        <h2>{{total_comments}} comment{{total_comments|pluralize}}</h2>
+    {% endwith%}
+
+        {% for comment in comments %}
+            <div class="comment">
+                <p class style="color:#808080; font-size:23px;">
+                    Comment {{ forloop.counter }} by {{ comment.name }} {{ comment.created }}</p>
+                {{ comment.body|linebreaks }}
+            </div>
+            {% empty %}
+                <p><h4>There are no comments yet!</h4></p>
+        {% endfor %}
+
+    {% if new_comment%}
+        <h2>Your Comment has been added</h2>
+    {%else%}
+        <h2>Add New Comment</h2>
+        <br>
+        <form action="" method="post">
+            {{comment_form.as_p}}
+            {% csrf_token %}
+            <p><input type="submit" value="Comment"></p>
+        </form>
+    
+    {% endif%}
+</section>
+
+{% endblock %}

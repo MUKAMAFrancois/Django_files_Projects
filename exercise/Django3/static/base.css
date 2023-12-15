@@ -1,0 +1,12 @@
+
+.sidebar{
+    position: fixed;
+    right: 0;
+    top: 200px;
+
+}
+main{
+    display: flex;
+    max-width: 800px;
+    
+}

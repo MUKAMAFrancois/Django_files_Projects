@@ -1,0 +1,116 @@
+{% extends 'common/base.html'%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{%block title%}Home Page{%endblock%}</title>
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+</head>
+<body>
+
+  {%block content%}
+
+
+  <div class="title-head container mt-4 mb-0">
+    <p class="h1">Laptops</p>
+    <a href="{% url 'all_laptops' %}" class="h3 text-danger">Explore more</a>
+  </div>
+  <div class="container-lg m-4">
+    <div class="row">
+      <div class="container-lg">
+        <div class="row">
+            {% for laptop in laptops|slice:":4"%}
+
+                <div class="col-lg-3 col-md-6 my-4 mb-4 card-container d-flex align-items-stretch">
+                  <div class="card h-60" style="width: 15rem;">
+                    <img src="{{laptop.image_product.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{laptop.product_name}}</h5>
+                      <p class="card-text">{{laptop.specifications}}</p>
+                     
+                      <div class="mt-5">
+                        <a href="{% url 'in_details' laptop.id laptop.slug %}" class="btn btn-primary fw-bold mx-4">Buy</a> 
+                        <span class="fw-bold price-color h5">${{laptop.price}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ 
+
+
+
+  <div class="title-head container mt-4 mb-0">
+    <p class="h1">Smart phones</p>
+    <a href="{% url 'all_phones' %}" class="h3 text-danger">Explore more</a>
+  </div>
+
+
+  <div class="container-lg m-4">
+    <div class="row">
+      <div class="container-lg">
+        <div class="row">
+
+          {% for phone in phones|slice:":4" %}
+            <div class="col-lg-3 col-md-6 my-4 mb-4 card-container d-flex align-items-stretch">
+              <div class="card h-60" style="width: 15rem;">
+                <img src="{{phone.image_product.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{phone.product_name}}</h5>
+                  <p class="card-text">{{phone.specifications}}</p>
+                 
+                  <div class="mt-5">
+                    <a href="{% url 'in_details' phone.id  phone.slug %}" class="btn btn-primary fw-bold mx-4">Buy</a> 
+                    <span class="fw-bold price-color h5">${{phone.price}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="title-head container mt-4 mb-0">
+    <p class="h1">Gadgets</p>
+    <a href="{%url 'all_gadgets' %}" class="h3 text-danger">Explore more</a>
+  </div>
+
+
+  <div class="container-lg m-4">
+    <div class="row">
+      <div class="container-lg">
+        <div class="row">
+          {% for gadget in gadgets|slice:":4" %}
+            <div class="col-lg-3 col-md-6 my-4 mb-4 card-container d-flex align-items-stretch">
+              <div class="card h-60" style="width: 15rem;">
+                <img src="{{gadget.image_product.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{gadget.product_name}}</h5>
+                  <p class="card-text">{{gadget.specifications}}</p>
+                  <div class="mt-5">
+                    <a href="{% url 'in_details' gadget.id gadget.slug %}" class="btn btn-primary fw-bold mx-4">Buy</a> 
+                    <span class="fw-bold price-color h5">${{gadget.price}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{%endblock%}
+  
+</body>
+</html>

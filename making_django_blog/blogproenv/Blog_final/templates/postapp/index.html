@@ -1,0 +1,54 @@
+{% extends 'postapp/base.html'%}
+
+<html>
+    {%block content%}
+    <nav>
+        <ul>
+            <li><h2><a href="{% url 'index'%}">Dashboard</a></h2></li>
+            <li><h2><a href="{% url 'sciences'%}">Sciences</a></h2></li>
+        </ul>
+    </nav>
+    {%if user.is_authenticated%}
+    <h2>Welcome, {{user.username}}</h2>
+    {% include 'users/nav_logout.html'%}
+    {%else%}
+    <p>You are not Logged In</p>
+    {% include 'users/nav_login.html'%}
+    {%endif%}
+        {%for article in object_list%}
+            <h1><a href="{% url 'details' article.id%}">{{article.title}}</a></h1>
+            <hr>
+            <p>Written by {{article.author}} at {{article.date}}</p>
+            <p>{{article.content|truncatewords_html:30|safe}} <a href="{% url 'details' article.id%}">Read more</a></p>
+        {%endfor%}
+
+        <nav>
+            <ul class="pagination">
+                <div>
+                    {% if page_obj.has_previous %}
+                        <li >
+                            <a  href="?page=1">&laquo; First</a>
+                        </li>
+    
+                        <li>
+                            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        </li>
+                    {% endif %}
+    
+                    <li class="page-item">
+                        <a href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</a>
+                    </li>
+    
+                    {% if page_obj.has_next %}
+                        <li >
+                            <a  href="?page={{ page_obj.next_page_number }}">Next</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                        </li>
+                    {% endif %}
+                </div>
+            </ul>
+        </nav>
+    {%endblock%}
+</html>

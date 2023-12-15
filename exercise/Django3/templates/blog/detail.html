@@ -1,0 +1,40 @@
+{%block content%}
+<div>
+    <h1>{{post.title}}</h1>
+    <hr>
+    <p>{{post.body}}</p>
+</div>
+<a href="{% url 'all'%}"><button>Back</button></a>
+<div class="commenting_system">
+ <section>
+            {% if new_comment%}
+            <h2>Your Comment has been added</h2>
+        {%else%}
+            <h2>Add New Comment</h2>
+            <br>
+            <form action="" method="post">
+                {{comment_form.as_p}}
+                {% csrf_token %}
+                <p><input type="submit" value="Comment"></p>
+            </form>
+            {%endif%}
+            
+    {% with comments.count as total_comments%}
+        <h2>{{total_comments}} comment{{total_comments|pluralize}}</h2>
+    {% endwith%}
+
+        {% for comment in comments %}
+            <div class="comment">
+                <p class style="color:#808080; font-size:23px;">
+                    Comment {{ forloop.counter }} by {{ comment.name }} {{ comment.created }}</p>
+               <h1> {{ comment.content }}</h1>
+            </div>
+            {% empty %}
+                <p><h4>There are no comments yet!</h4></p>
+        {% endfor %}
+
+   
+ </section>
+
+</div>
+{%endblock%}

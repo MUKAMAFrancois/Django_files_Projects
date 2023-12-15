@@ -1,0 +1,59 @@
+{%extends 'common/base.html'%}
+{%block carousel %}{%endblock%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}Laptops{%endblock%}</title>
+    <link rel="stylesheet" href="{% static 'css/explore.css'%}">
+</head>
+
+<style>
+    body{
+        min-height: 100vh;
+        background-color: #f0f8ff;
+        background-image: linear-gradient(steelblue,#fff);
+    }
+   
+</style>
+<body>
+    {% block content%}
+
+
+    <div class="head container">
+        <h1>Welcome to our products.</h1>
+        <h2>Select the best laptop for you.</h2>
+    </div>
+
+    <div class="container-lg m-4">
+        <div class="row">
+          <div class="container-lg">
+            <div class="row">
+              {% for laptop in laptops%}
+
+                <div class="col-lg-3 col-md-6 my-4 mb-4 card-container d-flex align-items-stretch">
+                  <div class="card h-60" style="width: 15rem;">
+                    <img src="{{laptop.image_product.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{laptop.product_name}}</h5>
+                      <p class="card-text">{{laptop.specifications}}</p>
+                      <div class="mt-5">
+                        <a href="{% url 'in_details' laptop.slug %}" class="btn btn-primary fw-bold mx-3">Buy</a> 
+                        <span class="fw-bold price-color h5">${{laptop.price}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+    </div>
+
+    {%endblock%}
+
+    
+</body>
+</html>

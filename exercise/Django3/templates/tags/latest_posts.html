@@ -1,0 +1,5 @@
+{%block content%}
+    {%for latest in first_fives%}
+    <li>   <a href="{% url 'detail' latest.slug%}">{{latest.title}}</a></li>
+    {%endfor%}
+{%endblock%}

@@ -1,0 +1,36 @@
+{% extends 'postapp/base.html'%}
+
+<html>
+    {%block content%}
+    <nav>
+        <ul>
+            <li><h2><a href="{% url 'index'%}">Dashboard</a></h2></li>
+        </ul>
+    </nav>
+    {%if user.is_authenticated%}
+    <p>Hello, {{user.username}}, Welcome to Sciences</p>
+    {%endif%}
+        {%for article in object_list%}
+        <h1><a href="{% url 'details' article.id%}">{{article.title}}</a></h1>
+        <hr>
+        <p>Written by {{article.author}} at {{article.date}}</p>
+        <p>{{article.content|truncatewords_html:30|safe}} <a href="{% url 'details' article.id%}">Read more</a></p>
+        {%endfor%}
+        <a href="{%url 'index'%}"><button>Back to all articles</button></a>
+        <nav>
+            <ul>
+             {%if page_obj.has_previous%}
+             <li><a href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+             {%endif%}
+            </ul>
+            <ul>
+                <li><a href="#">Page {{page_obj.number}} Of {{page_obj.paginator.num_pages}}</a></li>
+            </ul>
+            <ul>
+                {%if page_obj.has_next%}
+                <li><a href="?page={{page_obj.next_page_number}}">Next</a></li>
+                {%endif%}
+            </ul>
+        </nav>
+    {%endblock%}
+</html>

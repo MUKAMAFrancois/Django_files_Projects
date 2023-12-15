@@ -1,0 +1,32 @@
+{%load static%}
+{%block content%}
+    <head>
+        <title>Login Form</title>
+        <link rel="stylesheet" href="{%static 'accounts/base_accounts.css'%}">
+    </head>
+
+    <body>
+       
+      <div class="outer-div">
+        <h1>Login</h1>
+        {%for message in messages%}
+        <h5 style="color:#be0606">{{message}}</h5>
+        {%endfor%}
+
+        <form action="{%url 'login'%}" method="post" class="form">
+            {%csrf_token%}
+            {{form.as_p}}
+
+            <button type="submit">Login</button>
+        </form>
+           <h5>Need To Logout? <a href="{%url 'logout' %}">Logout</a> </h5>
+            <h5>No account? <a href="{%url 'signup'%}">Sign Up</a> </h5>
+            <h5>Change Password? <a href="{%url 'change_password'%}">Change</a></h5>
+            
+            <div>
+              <a href="{%url 'password_reset'%}">Forgot Password?</a>
+            </div>
+
+      </div>
+    </body>
+{%endblock%}

@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+       {%block content%}
+       <h2>Weather App</h2>
+       <form action="index" method="post">
+           {%csrf_token%}
+           <input type="text" name="city" id="" placeholder="type a city name">
+           <input type="submit" value="Search">
+       </form>
+       <hr>
+       {%if data_In_dict.country_code%}
+       <div>
+            <h2>{{city}}</h2>
+            <h4>Country Code:{{data_In_dict.country_code}}</h4>
+            <h5>Coordinate:{{data_In_dict.coordinate}}</h5>
+            <h5>Temperature:{{data_In_dict.temp}}</h5>
+            <h5>Pressure:{{data_In_dict.Pressure}}</h5>
+            <h5>Humidity:{{data_In_dict.Humidity}}</h5>
+        </div>
+       {%endif%}
+       
+       {%endblock%}
+    </body>
+
+</html>

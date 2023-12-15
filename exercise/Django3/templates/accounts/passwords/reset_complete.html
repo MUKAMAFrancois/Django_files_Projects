@@ -1,0 +1,13 @@
+{%load static%}
+{%block content%}
+<head>
+    <title>Reset  Passwprd</title>
+    <link rel="stylesheet" href="{%static 'accounts/base_accounts.css'%}">
+</head>
+<body>
+   <div class="outer-div">
+        <h1>Your Password Was Successfully Reset!</h1>
+       <a href="{% url 'login'%}"><button>Login Now</button></a>
+   </div>
+</body>
+{%endblock%}

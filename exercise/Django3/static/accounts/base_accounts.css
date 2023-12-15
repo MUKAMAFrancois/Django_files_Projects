@@ -1,0 +1,27 @@
+body{
+
+    background-color: #c4c1c1;
+    color:#fff;
+    font-size: 24px;
+}
+.outer-div{
+    position:fixed;
+    left:200px;
+}
+button{
+    font-size: large;
+    color:white;
+    background-color: #be0606;
+    padding:10px;
+    border-radius: 10px;
+    border:none;
+}
+
+h5{
+    line-height: 0;
+}
+
+a{
+    text-decoration: none;
+    color: #0c7cde;
+}

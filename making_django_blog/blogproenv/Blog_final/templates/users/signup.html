@@ -1,0 +1,9 @@
+{% block content%}
+<h1>Sign Up:</h1>
+<form action="" method="post">
+    {%csrf_token%}
+    {{form}}
+    <div><button type="submit">Sign Up</button></div>
+</form>
+<small><div>Already have an account? <a href="{% url 'login'%}">Login</a></div></small>
+{%endblock%}

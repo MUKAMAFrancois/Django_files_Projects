@@ -1,0 +1,18 @@
+{% extends 'blogapp/base.html'%}
+
+{%block title%} <h1>Mukama's Blog</h1> {%endblock%}
+
+{%block content%}
+<h1>Mukama's Blog</h1>
+<p><a href="{% url 'blogapp:logout'%}">Logout</a></p>
+{% if user.is_authenticated%}
+<h2>Hello, {{user.username}}. Welcome</h2>
+{%endif%}
+
+    {%for post in posts%}
+        <hr>
+        <h2><a href="{% url 'blogapp:fulltext' post.id %}">{{post.title}}</a></h2>
+        <h3>Author: <a href="">{{post.author}}</a> at {{post.created}}</h3>
+        <p>{{post.body|truncatewords:20}} <a href="{% url 'blogapp:fulltext' post.id %}" style="color:#820707">Read more</a> </p>
+    {%endfor%}
+{%endblock%}

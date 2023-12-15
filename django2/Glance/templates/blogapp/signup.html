@@ -1,0 +1,17 @@
+{%extends 'blogapp/base.html'%}
+
+{%block content%}
+<h2>Sign up:</h2>
+{%for message in messages%}
+<h4 style="color:#ff0000">{{message}}</h4>
+{%endfor%}
+<form action="register" method="post">
+    {%csrf_token%}
+    <p>Username:<input type="text" name="username" id=""></p>
+    <p>Email:<input type="email" name="email" id=""></p>
+    <p>Password:<input type="password" name="password1" id=""></p>
+    <p>Repeat Password:<input type="password" name="password2" id=""></p>
+    <input type="submit" value="Submit">
+</form>
+<p>Already have an account? <a href="{% url 'blogapp:login'%}">Login</a> </p>
+{%endblock%}

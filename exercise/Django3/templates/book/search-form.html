@@ -1,0 +1,26 @@
+<h1>Hello Search</h1>
+
+<title>Welcome to search</title>
+<form action="" method="get">
+    {{form.as_p}}
+
+    <input type="submit" value="Search">
+</form>
+{% if user_data%}
+    <div>
+        {% with results.count as total_results%}
+        <h3 style="color:rgb(218, 7, 7)"> Found {{total_results}} result{{total_results|pluralize}} Containing "{{user_data}}"</h3>
+        {%endwith%}
+    </div>
+{%endif%}
+
+<div>
+    {% for post in results%}
+        <h2 style="color:#333">Written by:{{post.authors}}</h2>
+        <p>{{post.title}}</p>
+        <hr>
+        {%empty%}
+        <h2>No Results found <a href="{% url 'search'%}">Search again</a></h2>
+    {%endfor%}
+
+</div>

@@ -1,0 +1,19 @@
+{%load static%}
+{%block content%}
+<head>
+    <title>Password Reset</title>
+    <link rel="stylesheet" href="{%static 'accounts/base_accounts.css'%}">
+</head>
+<body>
+   <div class="outer-div">
+    <h2>Reset Your Password</h2>
+    <p>Enter Your Email Adress to reset your password!</p>
+
+    <form action="{%url 'password_reset'%}" method="post">
+        {%csrf_token%}
+        {{form.as_p}}
+        <button type="submit">Send E-mail</button>
+    </form>
+   </div>
+</body>
+{%endblock%}
